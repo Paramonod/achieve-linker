@@ -17,31 +17,31 @@ services:
       - ${LINKER_SSH_LOCAL_KEY_FILE}:${LINKER_SSH_KEY_FILE}
     networks:
       linker_net:
-            ipv4_address: 172.28.1.1
+          ipv4_address: 172.28.1.1
     dns:
       - 8.8.8.8
       - 1.1.1.1
 
-    ssh-to-rdp:
-      image: jnovack/autossh
-      container_name: autossh-ssh-to-rdp
-      environment:
-        - SSH_HOSTUSER=${LINKER_SSH_HOSTUSER}
-        - SSH_HOSTNAME=${LINKER_SSH_HOSTNAME}
-        - SSH_TUNNEL_REMOTE=${LINKER_SSH_TUNNEL_REMOTE_RDP_PORT}
-        - SSH_TUNNEL_HOST=${LINKER_SSH_TUNNEL_LOCAL_RDP_IP}
-        - SSH_TUNNEL_LOCAL=${LINKER_SSH_TUNNEL_LOCAL_RDP_PORT}
-        - SSH_STRICT_HOST_IP_CHECK=${LINKER_SSH_STRICT_HOST_IP_CHECK}
-        - SSH_KEY_FILE=${LINKER_SSH_KEY_FILE}
-      restart: always
-      volumes:
-        - ${LINKER_SSH_LOCAL_KEY_FILE}:${LINKER_SSH_KEY_FILE}
-      networks:
-        linker_net:
-              ipv4_address: 172.28.1.2
-      dns:
-        - 8.8.8.8
-        - 1.1.1.1
+  ssh-to-rdp:
+    image: jnovack/autossh
+    container_name: autossh-ssh-to-rdp
+    environment:
+      - SSH_HOSTUSER=${LINKER_SSH_HOSTUSER}
+      - SSH_HOSTNAME=${LINKER_SSH_HOSTNAME}
+      - SSH_TUNNEL_REMOTE=${LINKER_SSH_TUNNEL_REMOTE_RDP_PORT}
+      - SSH_TUNNEL_HOST=${LINKER_SSH_TUNNEL_LOCAL_RDP_IP}
+      - SSH_TUNNEL_LOCAL=${LINKER_SSH_TUNNEL_LOCAL_RDP_PORT}
+      - SSH_STRICT_HOST_IP_CHECK=${LINKER_SSH_STRICT_HOST_IP_CHECK}
+      - SSH_KEY_FILE=${LINKER_SSH_KEY_FILE}
+    restart: always
+    volumes:
+      - ${LINKER_SSH_LOCAL_KEY_FILE}:${LINKER_SSH_KEY_FILE}
+    networks:
+      linker_net:
+          ipv4_address: 172.28.1.2
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
       
 networks:
     linker_net:
