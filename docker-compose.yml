@@ -49,3 +49,5 @@ networks:
             driver: default
             config:
                 - subnet: 172.28.0.0/16
+    ADhelper_adagent-net:
+      external: true
